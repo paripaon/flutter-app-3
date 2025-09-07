@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white12,
       appBar: AppBarClass(),
+      drawer: DrawerOnly(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text('Send', style: TextStyle(color: Colors.black),),
+                    child: Text('Send', style: TextStyle(color: Colors.black)),
                   ),
                 ),
               ),
@@ -110,15 +111,72 @@ class AppBarClass extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 16),
-          child: IconButton(
-            onPressed: () {},
-            icon: Icon(CupertinoIcons.ellipsis_vertical, color: Colors.white70),
+      actions: [],
+    );
+  }
+}
+
+class DrawerOnly extends StatelessWidget {
+  @override
+  Widget build(BuildContext ctxt) {
+    return Drawer(
+      backgroundColor: Color.fromARGB(250, 90, 90, 90),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              'Menu',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+                shadows: [Shadow(color: Colors.black, offset: Offset(3, 0.5))],
+              ),
+            ),
           ),
-        ),
-      ],
+          Divider(color: Colors.black45,),
+          ListTile(
+            title: Text(
+              'Home',
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                shadows: [Shadow(color: Colors.black, offset: Offset(1, 1))],
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(ctxt);
+              Navigator.push(
+                ctxt,
+                MaterialPageRoute(builder: (ctxt) => MyHomePage()),
+              );
+            },
+          ),
+          Divider(color: Colors.black45,),
+          ListTile(
+            title: Text(
+              'Login',
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                shadows: [Shadow(color: Colors.black, offset: Offset(1, 1))],
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(ctxt);
+              Navigator.push(
+                ctxt,
+                MaterialPageRoute(builder: (ctxt) => MyHomePage()),
+              );
+            },
+          ),
+          Divider(color: Colors.black45,),
+        ],
+      ),
     );
   }
 }
