@@ -39,45 +39,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white12,
-      appBar: AppBar(
-        title: Text(
-          'PARIPAON',
-          style: TextStyle(
-            color: Colors.white70,
-            shadows: [Shadow(color: Colors.black45, offset: Offset(1, 1))],
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        backgroundColor: Color.fromARGB(200, 90, 90, 90),
-        bottom: PreferredSize(
-          preferredSize: Size(double.infinity, 0.2),
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.white54, width: 0.5),
-            ),
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(
-                CupertinoIcons.ellipsis_vertical,
-                color: Colors.white70,
-              ),
-            ),
-          ),
-        ],
-      ),
+      appBar: AppBarClass(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -87,9 +61,64 @@ class MyHomePage extends StatelessWidget {
             TextField_Theme(lable: "Email", rightIcon: null),
             SizedBox(height: 10),
             TextField_Theme(lable: "Password", rightIcon: CupertinoIcons.eye),
+            SizedBox(height: 4),
+            SizedBox(
+              child: TextButton(
+                onPressed: () {
+                  setState(() {});
+                },
+                child: Container(
+                  width: 150,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text('Send', style: TextStyle(color: Colors.black),),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class AppBarClass extends StatelessWidget implements PreferredSizeWidget {
+  const AppBarClass({super.key});
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text(
+        'PARIPAON',
+        style: Theme.of(context).textTheme.headlineMedium,
+      ),
+      backgroundColor: Color.fromARGB(200, 90, 90, 90),
+      bottom: PreferredSize(
+        preferredSize: Size(double.infinity, 0.2),
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.white54, width: 0.5),
+          ),
+        ),
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 16),
+          child: IconButton(
+            onPressed: () {},
+            icon: Icon(CupertinoIcons.ellipsis_vertical, color: Colors.white70),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -109,7 +138,7 @@ class TextField_Theme extends StatefulWidget {
 }
 
 class _TextField_ThemeState extends State<TextField_Theme> {
-  bool _obscure = true;
+  bool _obscure = false;
 
   @override
   Widget build(BuildContext context) {
