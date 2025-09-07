@@ -46,9 +46,9 @@ class MyHomePage extends StatelessWidget {
           children: [
             Text('Log in', style: Theme.of(context).textTheme.headlineMedium),
             SizedBox(height: 16),
-            TextField_Them(lable: "Email", rightIcon: null),
+            TextField_Theme(lable: "Email", rightIcon: null),
             SizedBox(height: 10),
-            TextField_Them(lable: "Password", rightIcon: CupertinoIcons.eye),
+            TextField_Theme(lable: "Password", rightIcon: CupertinoIcons.eye),
           ],
         ),
       ),
@@ -56,15 +56,22 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class TextField_Them extends StatelessWidget {
+class TextField_Theme extends StatefulWidget {
   final String lable;
   final rightIcon;
 
-  const TextField_Them({
+  const TextField_Theme({
     super.key,
     required this.lable,
     required this.rightIcon,
   });
+
+  @override
+  State<TextField_Theme> createState() => _TextField_ThemeState();
+}
+
+class _TextField_ThemeState extends State<TextField_Theme> {
+  bool _obscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +82,20 @@ class TextField_Them extends StatelessWidget {
       child: TextField(
         style: Theme.of(context).textTheme.bodyMedium,
         decoration: InputDecoration(
-          labelText: lable,
+          labelText: widget.lable,
           labelStyle: Theme.of(context).textTheme.bodySmall,
-          suffixIcon: Icon(rightIcon),
+          suffixIcon: widget.rightIcon != null
+              ? IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _obscure = !_obscure;
+                    });
+                  },
+                  icon: Icon(
+                    _obscure ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
+                  ),
+                )
+              : null,
           suffixIconColor: Colors.white38,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(17),
@@ -85,7 +103,7 @@ class TextField_Them extends StatelessWidget {
           ),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
         ),
-
+        obscureText: _obscure,
       ),
     );
   }
