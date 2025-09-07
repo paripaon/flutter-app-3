@@ -13,8 +13,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         textTheme: TextTheme(
-          headlineMedium: TextStyle(
+          headlineLarge: TextStyle(
             fontSize: 28,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+            shadows: [Shadow(offset: Offset(2, 3))],
+          ),
+          headlineMedium: TextStyle(
+            fontSize: 20,
             fontWeight: FontWeight.w600,
             color: Colors.white,
             shadows: [Shadow(offset: Offset(2, 3))],
@@ -40,11 +46,43 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white12,
+      appBar: AppBar(
+        title: Text(
+          'PARIPAON',
+          style: TextStyle(
+            color: Colors.white70,
+            shadows: [Shadow(color: Colors.black45, offset: Offset(1, 1))],
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        backgroundColor: Color.fromARGB(200, 90, 90, 90),
+        bottom: PreferredSize(
+          preferredSize: Size(double.infinity, 0.2),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white54, width: 0.5),
+            ),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                CupertinoIcons.ellipsis_vertical,
+                color: Colors.white70,
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Log in', style: Theme.of(context).textTheme.headlineMedium),
+            Text('Log in', style: Theme.of(context).textTheme.headlineLarge),
             SizedBox(height: 16),
             TextField_Theme(lable: "Email", rightIcon: null),
             SizedBox(height: 10),
@@ -104,6 +142,7 @@ class _TextField_ThemeState extends State<TextField_Theme> {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
         ),
         obscureText: _obscure,
+        cursorColor: Colors.white,
       ),
     );
   }
