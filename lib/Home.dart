@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 class MySecondPage extends StatefulWidget {
   const MySecondPage({super.key});
 
@@ -20,28 +19,51 @@ class _MySecondPageState extends State<MySecondPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 8,),
-            Container(
-              width: double.infinity,
-              height: 40,
-              color: Colors.white70,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(120, 0, 0, 0),
-                    child: TextButton(onPressed: () {}, child: Text('Search for anything'),),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 32, 0),
-                    child: Icon(CupertinoIcons.search, size: 22, color: Colors.black54,),
-                  ),
-                ],
-              ),
+            SizedBox(height: 10),
+            FieldText_secondpage(),
+            SizedBox(height: 16),
+            ListTile(
             )
           ],
         ),
       ),
+    );
+  }
+}
+
+class FieldText_secondpage extends StatelessWidget {
+  const FieldText_secondpage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 300,
+          height: 50,
+          color: Color.fromARGB(20, 100, 100, 100),
+          child: TextField(
+            style: Theme.of(context).textTheme.bodyMedium,
+            decoration: InputDecoration(
+              labelText: "search",
+              labelStyle: Theme.of(context).textTheme.bodySmall,
+              suffixIcon: Icon(CupertinoIcons.search),
+              suffixIconColor: Colors.white38,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(17),
+                borderSide: BorderSide(color: Colors.white54),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
+            cursorColor: Colors.white,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -123,8 +145,11 @@ class DrawerOnly extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
-
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                "/home",
+                (route) => false,
+              );
             },
           ),
           Divider(color: Colors.black45),
