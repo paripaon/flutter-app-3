@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myaplication1/Home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,9 +32,14 @@ class MyApp extends StatelessWidget {
             color: Colors.white,
             shadows: [Shadow(offset: Offset(2, 1.5))],
           ),
+            bodyLarge: TextStyle(fontSize: 15, color: Color.fromARGB(180, 10, 10, 10)),
         ),
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
+      routes: {
+        "/home": (context) => const MyHomePage(),
+        "/second": (context) => const MySecondPage(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }
@@ -118,7 +124,7 @@ class AppBarClass extends StatelessWidget implements PreferredSizeWidget {
 
 class DrawerOnly extends StatelessWidget {
   @override
-  Widget build(BuildContext ctxt) {
+  Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Color.fromARGB(250, 90, 90, 90),
       child: Column(
@@ -148,11 +154,7 @@ class DrawerOnly extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.pop(ctxt);
-              Navigator.push(
-                ctxt,
-                MaterialPageRoute(builder: (ctxt) => MyHomePage()),
-              );
+              Navigator.pushNamedAndRemoveUntil(context, "/second", (route) => false);
             },
           ),
           Divider(color: Colors.black45,),
@@ -167,11 +169,7 @@ class DrawerOnly extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.pop(ctxt);
-              Navigator.push(
-                ctxt,
-                MaterialPageRoute(builder: (ctxt) => MyHomePage()),
-              );
+              Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
             },
           ),
           Divider(color: Colors.black45,),
