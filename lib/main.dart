@@ -32,7 +32,10 @@ class MyApp extends StatelessWidget {
             color: Colors.white,
             shadows: [Shadow(offset: Offset(2, 1.5))],
           ),
-            bodyLarge: TextStyle(fontSize: 15, color: Color.fromARGB(180, 10, 10, 10)),
+          bodyLarge: TextStyle(
+            fontSize: 15,
+            color: Color.fromARGB(180, 10, 10, 10),
+          ),
         ),
       ),
       home: const MyHomePage(),
@@ -53,6 +56,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  final String correctEmail = "email.com";
+  final String correctPassword = "password";
+
+  String errorText = "wrong Password or Email!";
+  Color _TextColor = Color.fromARGB(0, 10, 10, 10);
+
+  void _login() {
+    if (_emailController.text == correctEmail &&
+        _passwordController.text == correctPassword) {
+      Navigator.pushNamedAndRemoveUntil(context, "/second", (route) => false);
+    } else {
+      setState(() {
+        _TextColor = Colors.redAccent;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,15 +88,21 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Text('Log in', style: Theme.of(context).textTheme.headlineLarge),
             SizedBox(height: 16),
-            TextField_Theme(lable: "Email", rightIcon: null),
+            TextField_Theme(
+              lable: "Email",
+              rightIcon: null,
+              controller: _emailController,
+            ),
             SizedBox(height: 10),
-            TextField_Theme(lable: "Password", rightIcon: CupertinoIcons.eye),
+            TextField_Theme(
+              lable: "Password",
+              rightIcon: CupertinoIcons.eye,
+              controller: _passwordController,
+            ),
             SizedBox(height: 4),
             SizedBox(
               child: TextButton(
-                onPressed: () {
-                  setState(() {});
-                },
+                onPressed: _login,
                 child: Container(
                   width: 150,
                   height: 30,
@@ -83,9 +112,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text('Send', style: TextStyle(color: Colors.black)),
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ),
+              ),
+            ),
+            Text(
+              errorText,
+              style: TextStyle(
+                color: _TextColor,
+                shadows: [Shadow(color: _TextColor, offset: Offset(0, 0))],
+                fontSize: 13,
               ),
             ),
           ],
@@ -142,7 +182,7 @@ class DrawerOnly extends StatelessWidget {
               ),
             ),
           ),
-          Divider(color: Colors.black45,),
+          Divider(color: Colors.black45),
           ListTile(
             title: Text(
               'Home',
@@ -154,10 +194,14 @@ class DrawerOnly extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.pushNamedAndRemoveUntil(context, "/second", (route) => false);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                "/second",
+                (route) => false,
+              );
             },
           ),
-          Divider(color: Colors.black45,),
+          Divider(color: Colors.black45),
           ListTile(
             title: Text(
               'Login',
@@ -169,10 +213,14 @@ class DrawerOnly extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                "/home",
+                (route) => false,
+              );
             },
           ),
-          Divider(color: Colors.black45,),
+          Divider(color: Colors.black45),
         ],
       ),
     );
@@ -182,11 +230,13 @@ class DrawerOnly extends StatelessWidget {
 class TextField_Theme extends StatefulWidget {
   final String lable;
   final rightIcon;
+  final TextEditingController controller;
 
   const TextField_Theme({
     super.key,
     required this.lable,
-    required this.rightIcon,
+    this.rightIcon,
+    required this.controller,
   });
 
   @override
@@ -194,7 +244,7 @@ class TextField_Theme extends StatefulWidget {
 }
 
 class _TextField_ThemeState extends State<TextField_Theme> {
-  bool _obscure = false;
+  bool _obscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -203,6 +253,7 @@ class _TextField_ThemeState extends State<TextField_Theme> {
       height: 50,
       color: Color.fromARGB(20, 100, 100, 100),
       child: TextField(
+        controller: widget.controller,
         style: Theme.of(context).textTheme.bodyMedium,
         decoration: InputDecoration(
           labelText: widget.lable,
@@ -226,7 +277,7 @@ class _TextField_ThemeState extends State<TextField_Theme> {
           ),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
         ),
-        obscureText: _obscure,
+        obscureText: widget.lable == "Password" ? _obscure : false,
         cursorColor: Colors.white,
       ),
     );
