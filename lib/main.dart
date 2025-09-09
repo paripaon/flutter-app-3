@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myaplication1/Home.dart';
+import 'package:myaplication1/Products.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/home": (context) => const MyHomePage(),
         "/second": (context) => const MySecondPage(),
+        "/third": (context) => const MythirdPage(),
       },
       debugShowCheckedModeBanner: false,
     );

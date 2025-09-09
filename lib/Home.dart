@@ -69,64 +69,79 @@ class Product_s extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: 110,
-          width: 300,
-          decoration: BoxDecoration(
-            color: Colors.white38,
-            borderRadius: BorderRadius.circular(24),
-            boxShadow: [BoxShadow(blurRadius: 10, color: Color(0x555282FF))],
-          ),
-          margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(17),
-                  child: Image.asset('assets/images/${productGet.imagePath}'),
+        InkWell(
+          onTap: () {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              "/third",
+              (route) => false,
+            );
+          },
+          child: Container(
+            height: 110,
+            width: 300,
+            decoration: BoxDecoration(
+              color: Colors.white38,
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: [BoxShadow(blurRadius: 10, color: Color(0x555282FF))],
+            ),
+            margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(17),
+                    child: Image.asset('assets/images/${productGet.imagePath}'),
+                  ),
                 ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
-                      child: Text(
-                        productGet.name,
-                        style: TextStyle(
-                          color: Colors.black,
-                          shadows: [
-                            Shadow(color: Colors.black54, offset: Offset(0, 0)),
-                          ],
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
+                        child: Text(
+                          productGet.name,
+                          style: TextStyle(
+                            color: Colors.black,
+                            shadows: [
+                              Shadow(
+                                color: Colors.black54,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                            fontSize: 16,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                      child: Text(
-                        'Price: ${productGet.price}',
-                        style: TextStyle(
-                          color: Colors.black,
-                          shadows: [
-                            Shadow(color: Colors.black54, offset: Offset(0, 0)),
-                          ],
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        child: Text(
+                          'Price: ${productGet.price}',
+                          style: TextStyle(
+                            color: Colors.black,
+                            shadows: [
+                              Shadow(
+                                color: Colors.black54,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ],
