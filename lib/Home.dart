@@ -15,26 +15,71 @@ class _MySecondPageState extends State<MySecondPage> {
       backgroundColor: Colors.white12,
       appBar: AppBarClass(),
       drawer: DrawerOnly(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 10),
-            FieldText_secondpage(),
-            SizedBox(height: 16),
-            ListTile(
-            )
-          ],
+      body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: 10),
+              FieldText_secondpage(),
+              SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(64, 0, 0, 0),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text('New products'),
+                ),
+              ),
+              _productList(),
+            ],
+          ),
         ),
+    );
+  }
+}
+
+class _productList extends StatelessWidget {
+  const _productList({
+    super.key,
+  });
+
+  // final List<ProductsListItem> products;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      width: 300,
+      child: ListView.builder(
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          // final product = products[index];
+          return Column(
+            children: [
+              Container(
+                height: 110,
+                decoration: BoxDecoration(
+                  color: Colors.white54,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 10,
+                      color: Color(0x555282FF),
+                    ),
+                  ],
+                ),
+                margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                child: Row(),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
 }
 
 class FieldText_secondpage extends StatelessWidget {
-  const FieldText_secondpage({
-    super.key,
-  });
+  const FieldText_secondpage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -127,9 +172,10 @@ class DrawerOnly extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.push(
+              Navigator.pushNamedAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => MySecondPage()),
+                "/second",
+                    (route) => false,
               );
             },
           ),
