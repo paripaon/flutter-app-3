@@ -42,7 +42,6 @@ class _productList extends StatelessWidget {
     super.key,
   });
 
-  // final List<ProductsListItem> products;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +51,6 @@ class _productList extends StatelessWidget {
       child: ListView.builder(
         itemCount: 5,
         itemBuilder: (context, index) {
-          // final product = products[index];
           return Column(
             children: [
               Container(
