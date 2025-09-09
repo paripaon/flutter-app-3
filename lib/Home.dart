@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myaplication1/product_data.dart';
 
 class MySecondPage extends StatefulWidget {
   const MySecondPage({super.key});
@@ -11,37 +12,37 @@ class MySecondPage extends StatefulWidget {
 class _MySecondPageState extends State<MySecondPage> {
   @override
   Widget build(BuildContext context) {
+    final products = AppDatabase.products;
     return Scaffold(
       backgroundColor: Colors.white12,
       appBar: AppBarClass(),
       drawer: DrawerOnly(),
       body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(height: 10),
-              FieldText_secondpage(),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(64, 0, 0, 0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text('New products'),
-                ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(height: 10),
+            FieldText_secondpage(),
+            SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(64, 0, 0, 0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text('New products'),
               ),
-              _productList(),
-            ],
-          ),
+            ),
+            productList(products: products),
+          ],
         ),
+      ),
     );
   }
 }
 
-class _productList extends StatelessWidget {
-  const _productList({
-    super.key,
-  });
+class productList extends StatelessWidget {
+  const productList({super.key, required this.products});
 
+  final List<product> products;
 
   @override
   Widget build(BuildContext context) {
@@ -51,27 +52,84 @@ class _productList extends StatelessWidget {
       child: ListView.builder(
         itemCount: 5,
         itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Container(
-                height: 110,
-                decoration: BoxDecoration(
-                  color: Colors.white54,
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 10,
-                      color: Color(0x555282FF),
-                    ),
-                  ],
-                ),
-                margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                child: Row(),
-              ),
-            ],
-          );
+          final product = products[index];
+          return Product_s(productGet: product);
         },
       ),
+    );
+  }
+}
+
+class Product_s extends StatelessWidget {
+  const Product_s({super.key, required this.productGet});
+
+  final product productGet;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          height: 110,
+          width: 300,
+          decoration: BoxDecoration(
+            color: Colors.white38,
+            borderRadius: BorderRadius.circular(24),
+            boxShadow: [BoxShadow(blurRadius: 10, color: Color(0x555282FF))],
+          ),
+          margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(17),
+                  child: Image.asset('assets/images/${productGet.imagePath}'),
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
+                      child: Text(
+                        productGet.name,
+                        style: TextStyle(
+                          color: Colors.black,
+                          shadows: [
+                            Shadow(color: Colors.black54, offset: Offset(0, 0)),
+                          ],
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: Text(
+                        'Price: ${productGet.price}',
+                        style: TextStyle(
+                          color: Colors.black,
+                          shadows: [
+                            Shadow(color: Colors.black54, offset: Offset(0, 0)),
+                          ],
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
@@ -173,7 +231,7 @@ class DrawerOnly extends StatelessWidget {
               Navigator.pushNamedAndRemoveUntil(
                 context,
                 "/second",
-                    (route) => false,
+                (route) => false,
               );
             },
           ),
