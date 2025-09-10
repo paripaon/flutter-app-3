@@ -72,6 +72,9 @@ class Product_s extends StatelessWidget {
     return Column(
       children: [
         InkWell(
+          borderRadius: BorderRadius.circular(24),
+
+          splashColor: Colors.white38,
           onTap: () {
             Navigator.push(
               context,
@@ -144,6 +147,7 @@ class Product_s extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(height: 10000,),
               ],
             ),
           ),

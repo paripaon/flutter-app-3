@@ -22,16 +22,17 @@ class MythirdPage extends StatelessWidget {
               Text(
                 producta.name,
                 style: TextStyle(
-                  color: Colors.white70,
+                  color: Colors.white,
                   fontWeight: FontWeight.w800,
                   fontSize: 28,
                 ),
               ),
+              SizedBox(height: 8,),
               Stack(
                 children: [
                   Container(
-                    height: 390,
-                    width: 390,
+                    height: 330,
+                    width: 330,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
@@ -70,7 +71,7 @@ class MythirdPage extends StatelessWidget {
               ),
               SizedBox(height: 5),
               Container(
-                width: 400,
+                width: 340,
                 height: 40,
                 decoration: BoxDecoration(
                   color: Colors.white70,
@@ -115,10 +116,12 @@ class MythirdPage extends StatelessWidget {
               SizedBox(height: 4),
               Container(
                 height: 700,
-                width: 395,
+                width: 330,
+                padding: EdgeInsetsGeometry.all(8),
                 decoration: BoxDecoration(
                   color: Colors.white54,
                   borderRadius: BorderRadius.circular(20),
+                  border: BoxBorder.all(color: Colors.black12, width: 3)
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
