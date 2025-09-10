@@ -19,6 +19,7 @@ class _MySecondPageState extends State<MySecondPage> {
       appBar: AppBarClass(),
       drawer: DrawerOnly(),
       body: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
