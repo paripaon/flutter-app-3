@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myaplication1/main.dart';
 import 'package:myaplication1/product_data.dart';
 
 class MySecondPage extends StatefulWidget {
@@ -184,94 +185,3 @@ class FieldText_secondpage extends StatelessWidget {
   }
 }
 
-class AppBarClass extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarClass({super.key});
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: Text(
-        'PARIPAON',
-        style: Theme.of(context).textTheme.headlineMedium,
-      ),
-      backgroundColor: Color.fromARGB(200, 90, 90, 90),
-      bottom: PreferredSize(
-        preferredSize: Size(double.infinity, 0.2),
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.white54, width: 0.5),
-          ),
-        ),
-      ),
-      actions: [],
-    );
-  }
-}
-
-class DrawerOnly extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: Color.fromARGB(250, 90, 90, 90),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text(
-              'Menu',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-                shadows: [Shadow(color: Colors.black, offset: Offset(3, 0.5))],
-              ),
-            ),
-          ),
-          Divider(color: Colors.black45),
-          ListTile(
-            title: Text(
-              'Home',
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                shadows: [Shadow(color: Colors.black, offset: Offset(1, 1))],
-              ),
-            ),
-            onTap: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                "/second",
-                (route) => false,
-              );
-            },
-          ),
-          Divider(color: Colors.black45),
-          ListTile(
-            title: Text(
-              'Login',
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                shadows: [Shadow(color: Colors.black, offset: Offset(1, 1))],
-              ),
-            ),
-            onTap: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                "/home",
-                (route) => false,
-              );
-            },
-          ),
-          Divider(color: Colors.black45),
-        ],
-      ),
-    );
-  }
-}
