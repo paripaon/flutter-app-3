@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 class product {
   final int id;
   final String name;
@@ -58,5 +56,46 @@ final List<product> products = [
     imagePath: "product_5.jpg",
     version: "9.1",
     category: "Phone",
+  ),
+];
+
+class categury {
+  final int id;
+  final String caption;
+  final String imagePath;
+
+  categury({required this.id, required this.caption, required this.imagePath});
+}
+
+final List<categury> categuries = [
+  categury(
+    id: 1,
+    caption: 'government',
+    imagePath: 'assets/carousel/large_post_1',
+  ),
+  categury(
+    id: 2,
+    caption: 'Technology',
+    imagePath: 'assets/carousel/large_post_2',
+  ),
+  categury(
+    id: 3,
+    caption: 'diving',
+    imagePath: 'assets/carousel/large_post_3',
+  ),
+  categury(
+    id: 4,
+    caption: 'Programming',
+    imagePath: 'assets/carousel/large_post_4',
+  ),
+  categury(
+    id: 5,
+    caption: 'Government',
+    imagePath: 'assets/carousel/large_post_5',
+  ),
+  categury(
+    id: 6,
+    caption: 'Architecture',
+    imagePath: 'assets/carousel/large_post_6',
   ),
 ];

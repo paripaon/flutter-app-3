@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myaplication1/carousel/carousel_slider.dart';
 import 'package:myaplication1/main.dart';
 import 'package:myaplication1/product_data.dart';
 import 'package:myaplication1/Products.dart';
@@ -34,9 +35,62 @@ class _MySecondPageState extends State<MySecondPage> {
               ),
             ),
             productList(products: products),
+            CateguryList(categuryGet: categuries,),
           ],
         ),
       ),
+    );
+  }
+}
+
+class CateguryList extends StatelessWidget {
+  const CateguryList({super.key, required this.categuryGet});
+
+  final List<categury> categuryGet;
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider.builder(
+      itemCount: categuryGet.length,
+      itemBuilder: (context, index, realIndex) {
+        return Container();
+      },
+      options: CarouselOptions(),
+    );
+  }
+}
+
+class FieldText_secondpage extends StatelessWidget {
+  const FieldText_secondpage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 300,
+          height: 50,
+          color: Color.fromARGB(20, 100, 100, 100),
+          child: TextField(
+            style: Theme.of(context).textTheme.bodyMedium,
+            decoration: InputDecoration(
+              labelText: "search",
+              labelStyle: Theme.of(context).textTheme.bodySmall,
+              suffixIcon: Icon(CupertinoIcons.search),
+              suffixIconColor: Colors.white38,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(17),
+                borderSide: BorderSide(color: Colors.white54),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
+            cursorColor: Colors.white,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -147,44 +201,9 @@ class Product_s extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10000,),
+                SizedBox(height: 10000),
               ],
             ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class FieldText_secondpage extends StatelessWidget {
-  const FieldText_secondpage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: 300,
-          height: 50,
-          color: Color.fromARGB(20, 100, 100, 100),
-          child: TextField(
-            style: Theme.of(context).textTheme.bodyMedium,
-            decoration: InputDecoration(
-              labelText: "search",
-              labelStyle: Theme.of(context).textTheme.bodySmall,
-              suffixIcon: Icon(CupertinoIcons.search),
-              suffixIconColor: Colors.white38,
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(17),
-                borderSide: BorderSide(color: Colors.white54),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-            ),
-            cursorColor: Colors.white,
           ),
         ),
       ],
