@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/home": (context) => const MyHomePage(),
         "/second": (context) => const MySecondPage(),
-        "/third": (context) => const MythirdPage(),
+        // "/third": (context) => const MythirdPage(),
       },
       debugShowCheckedModeBanner: false,
     );

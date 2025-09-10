@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myaplication1/main.dart';
 import 'package:myaplication1/product_data.dart';
+import 'package:myaplication1/Products.dart';
 
 class MySecondPage extends StatefulWidget {
   const MySecondPage({super.key});
@@ -13,7 +14,6 @@ class MySecondPage extends StatefulWidget {
 class _MySecondPageState extends State<MySecondPage> {
   @override
   Widget build(BuildContext context) {
-    final products = AppDatabase.products;
     return Scaffold(
       backgroundColor: Colors.white12,
       appBar: AppBarClass(),
@@ -51,7 +51,7 @@ class productList extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       width: 300,
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: products.length,
         itemBuilder: (context, index) {
           final product = products[index];
           return Product_s(productGet: product);
@@ -72,12 +72,14 @@ class Product_s extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            Navigator.pushNamedAndRemoveUntil(
+            Navigator.push(
               context,
-              "/third",
-              (route) => false,
+              MaterialPageRoute(
+                builder: (_) => MythirdPage(producta: productGet),
+              ),
             );
           },
+
           child: Container(
             height: 110,
             width: 300,
@@ -184,4 +186,3 @@ class FieldText_secondpage extends StatelessWidget {
     );
   }
 }
-
