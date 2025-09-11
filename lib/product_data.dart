@@ -59,43 +59,43 @@ final List<product> products = [
   ),
 ];
 
-class categury {
+class category {
   final int id;
   final String caption;
   final String imagePath;
 
-  categury({required this.id, required this.caption, required this.imagePath});
+  category({required this.id, required this.caption, required this.imagePath});
 }
 
-final List<categury> categuries = [
-  categury(
+final List<category> categuries = [
+  category(
     id: 1,
-    caption: 'government',
-    imagePath: 'assets/carousel/large_post_1',
+    caption: 'Government',
+    imagePath: 'assets/carousel/large_post_4.jpg',
   ),
-  categury(
+  category(
     id: 2,
     caption: 'Technology',
-    imagePath: 'assets/carousel/large_post_2',
+    imagePath: 'assets/carousel/large_post_2.jpg',
   ),
-  categury(
+  category(
     id: 3,
-    caption: 'diving',
-    imagePath: 'assets/carousel/large_post_3',
+    caption: 'Diving',
+    imagePath: 'assets/carousel/large_post_3.jpg',
   ),
-  categury(
+  category(
     id: 4,
     caption: 'Programming',
-    imagePath: 'assets/carousel/large_post_4',
+    imagePath: 'assets/carousel/large_post_1.jpg',
   ),
-  categury(
+  category(
     id: 5,
     caption: 'Government',
-    imagePath: 'assets/carousel/large_post_5',
+    imagePath: 'assets/carousel/large_post_5.jpg',
   ),
-  categury(
+  category(
     id: 6,
     caption: 'Architecture',
-    imagePath: 'assets/carousel/large_post_6',
+    imagePath: 'assets/carousel/large_post_6.jpg',
   ),
 ];

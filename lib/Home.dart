@@ -27,6 +27,8 @@ class _MySecondPageState extends State<MySecondPage> {
             SizedBox(height: 10),
             FieldText_secondpage(),
             SizedBox(height: 16),
+            CategoryList(categories: categuries),
+            SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.fromLTRB(64, 0, 0, 0),
               child: Align(
@@ -35,27 +37,9 @@ class _MySecondPageState extends State<MySecondPage> {
               ),
             ),
             productList(products: products),
-            CateguryList(categuryGet: categuries,),
           ],
         ),
       ),
-    );
-  }
-}
-
-class CateguryList extends StatelessWidget {
-  const CateguryList({super.key, required this.categuryGet});
-
-  final List<categury> categuryGet;
-
-  @override
-  Widget build(BuildContext context) {
-    return CarouselSlider.builder(
-      itemCount: categuryGet.length,
-      itemBuilder: (context, index, realIndex) {
-        return Container();
-      },
-      options: CarouselOptions(),
     );
   }
 }
@@ -204,6 +188,81 @@ class Product_s extends StatelessWidget {
                 SizedBox(height: 10000),
               ],
             ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CategoryList extends StatelessWidget {
+  const CategoryList({super.key, required this.categories});
+
+  final List<category> categories;
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider.builder(
+      itemCount: categories.length,
+      itemBuilder: (context, index, realIndex) {
+        final category = categories[index];
+        return CategoryItems(categoryGet: category);
+      },
+      options: CarouselOptions(
+        scrollPhysics: ClampingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        viewportFraction: 0.8,
+        aspectRatio: 1.2,
+        initialPage: 0,
+        disableCenter: true,
+        enableInfiniteScroll: false,
+        autoPlay: true,
+        autoPlayAnimationDuration: Duration(seconds: 2),
+        enlargeCenterPage: true,
+        enlargeFactor: 0.15,
+      ),
+    );
+  }
+}
+
+class CategoryItems extends StatelessWidget {
+  const CategoryItems({super.key, required this.categoryGet});
+
+  final category categoryGet;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          margin: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(24),
+          ),
+          foregroundDecoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.center,
+              colors: [Color(0xff000000), Colors.transparent],
+            ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(24),
+            child: Image.asset(
+              '${categoryGet.imagePath}',
+              fit: BoxFit.cover,
+              height: double.infinity,
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 30,
+          left: 30,
+          child: Text(
+            '${categoryGet.caption}',
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         ),
       ],
